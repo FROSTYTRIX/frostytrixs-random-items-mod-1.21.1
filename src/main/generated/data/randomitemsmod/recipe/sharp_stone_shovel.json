@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "stained_glass",
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "item": "randomitemsmod:sharp_stone_shovel_head"
+    }
+  },
+  "pattern": [
+    " X ",
+    " # ",
+    " # "
+  ],
+  "result": {
+    "count": 1,
+    "id": "randomitemsmod:sharp_stone_shovel"
+  }
+}

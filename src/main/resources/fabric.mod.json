@@ -1,6 +1,6 @@
 {
 	"schemaVersion": 1,
-	"id": "frostytrixs-random-items-mod",
+	"id": "randomitemsmod",
 	"version": "${version}",
 	"name": "Frostytrix's Random Items Mod",
 	"description": "A mod that adds many random items. The idea came from Daniel Krafft's Designing Custom Minecraft Items (Some of the items comes from his videos)",

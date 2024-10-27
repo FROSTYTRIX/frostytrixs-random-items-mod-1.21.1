@@ -1,0 +1,74 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"attack": {
+			"loop": true,
+			"animation_length": 0.5,
+			"bones": {
+				"Handle": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, -7.5],
+							"easing": "linear"
+						},
+						"0.25": {
+							"vector": [0, -180, 7.5],
+							"easing": "linear"
+						},
+						"0.5": {
+							"vector": [0, -360, -7.5],
+							"easing": "linear"
+						}
+					},
+					"position": {
+						"vector": [0, 0.25, 0],
+						"easing": "linear"
+					}
+				},
+				"chain": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.5": {
+							"vector": [0, -360, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"chainlink2": {
+					"rotation": {
+						"vector": [72.5, 0, -22.5],
+						"easing": "linear"
+					},
+					"position": {
+						"vector": [-0.5, 0, 0],
+						"easing": "linear"
+					}
+				},
+				"chainlink3": {
+					"rotation": {
+						"vector": [0, 90, -85],
+						"easing": "linear"
+					},
+					"position": {
+						"vector": [-1.45, 1.85, 0.4],
+						"easing": "linear"
+					}
+				},
+				"head": {
+					"rotation": {
+						"vector": [0, 90, -70],
+						"easing": "linear"
+					},
+					"position": {
+						"vector": [-0.45, 5.05, -2.3],
+						"easing": "linear"
+					}
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}

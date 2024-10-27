@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "randomitemsmod:item/sharp_stone_shovel_head"
+  }
+}

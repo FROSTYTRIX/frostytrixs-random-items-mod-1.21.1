@@ -1,0 +1,114 @@
+{
+  "credit": "Made with Blockbench",
+  "parent": "builtin/entity",
+  "texture_size": [
+    15,
+    18
+  ],
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [
+        90,
+        -90,
+        90
+      ],
+      "translation": [
+        0,
+        -7.25,
+        -4.25
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        -90,
+        90,
+        90
+      ],
+      "translation": [
+        0,
+        -7.25,
+        -4.25
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        -25,
+        -90,
+        0
+      ],
+      "translation": [
+        0,
+        -6.5,
+        0
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        -25,
+        90,
+        0
+      ],
+      "translation": [
+        0,
+        -6.5,
+        0
+      ]
+    },
+    "ground": {
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "translation": [
+        -1.75,
+        0,
+        -9.75
+      ]
+    },
+    "gui": {
+      "rotation": [
+        0,
+        0,
+        -21.75
+      ],
+      "translation": [
+        -3.5,
+        -5.25,
+        0
+      ],
+      "scale": [
+        0.681640625,
+        0.681640625,
+        0.681640625
+      ]
+    },
+    "head": {
+      "rotation": [
+        180,
+        -90,
+        180
+      ],
+      "translation": [
+        0,
+        -5.5,
+        -10
+      ]
+    },
+    "fixed": {
+      "translation": [
+        -2.25,
+        -9.25,
+        0
+      ],
+      "scale": [
+        0.818359375,
+        0.818359375,
+        0.818359375
+      ]
+    }
+  },
+  "textures": {
+    "particle": "randomitemsmod:item/stone_shovel_flail"
+  }
+}
