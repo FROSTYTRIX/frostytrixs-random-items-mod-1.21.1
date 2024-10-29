@@ -1,51 +1,35 @@
 package net.frostytrix.randomitems.item.custom;
 
-import net.frostytrix.randomitems.item.client.AnimatedItemRenderer;
-import net.minecraft.block.CactusBlock;
+import net.frostytrix.randomitems.item.client.StoneShovelFlailRenderer;
 import net.minecraft.client.render.item.BuiltinModelItemRenderer;
-import net.minecraft.entity.InteractionObserver;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.damage.DamageSources;
-import net.minecraft.entity.damage.DamageType;
-import net.minecraft.entity.damage.DamageTypes;
-import net.minecraft.entity.decoration.InteractionEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.MiningToolItem;
 import net.minecraft.item.ToolMaterial;
-import net.minecraft.predicate.entity.DamageSourcePredicate;
 import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.UseAction;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib.animatable.GeoAnimatable;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.animatable.SingletonGeoAnimatable;
 import software.bernie.geckolib.animatable.client.GeoRenderProvider;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animatable.instance.SingletonAnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
-import software.bernie.geckolib.renderer.GeoItemRenderer;
 import software.bernie.geckolib.util.RenderUtil;
 
 import java.util.List;
-import java.util.Set;
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
-public class ShovelFlailItem extends MiningToolItem implements GeoItem{
+public class StoneShovelFlailItem extends MiningToolItem implements GeoItem{
     private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
     private static final RawAnimation ATTACK_ANIM = RawAnimation.begin().thenPlay("attack");
 
-    public ShovelFlailItem(ToolMaterial material, Settings settings) {
+    public StoneShovelFlailItem(ToolMaterial material, Settings settings) {
         super(material, BlockTags.SHOVEL_MINEABLE, settings);
         SingletonGeoAnimatable.registerSyncedAnimatable(this);
     }
@@ -53,7 +37,7 @@ public class ShovelFlailItem extends MiningToolItem implements GeoItem{
     @Override
     public void createGeoRenderer(Consumer<GeoRenderProvider> consumer) {
         consumer.accept(new GeoRenderProvider() {
-            private final AnimatedItemRenderer renderer = new AnimatedItemRenderer();
+            private final StoneShovelFlailRenderer renderer = new StoneShovelFlailRenderer();
 
             @Override
             public @Nullable BuiltinModelItemRenderer getGeoItemRenderer() {
@@ -82,19 +66,23 @@ public class ShovelFlailItem extends MiningToolItem implements GeoItem{
     public TypedActionResult<ItemStack> use(World level, PlayerEntity player, Hand hand){
         if(level instanceof ServerWorld serverWorld && hand == Hand.MAIN_HAND){
             triggerAnim(player, GeoItem.getOrAssignId(player.getStackInHand(hand), serverWorld), "attack_controller", "attack");
-            radius(player);
+            radiusDamage(player);
         }
         return super.use(level, player, hand);
     }
 
-    public void radius(PlayerEntity player){
-        int maxDistanceFromPlayer = 5;
+    public void radiusDamage(PlayerEntity player){
+        int maxDistanceFromPlayer = 4;
         Box entityBox = new Box(player.getBlockPos()).expand(maxDistanceFromPlayer);
         List entityList = player.getWorld().getEntitiesByClass(MobEntity.class, entityBox, e -> e.isAlive());
-        player.sendMessage(Text.literal(entityList.toString()));
+        for (Object entity : entityList) {
+            if (entity instanceof MobEntity && ((MobEntity) entity).getY() >= player.getY()  && ((MobEntity) entity).getY() <= (player.getY()+2)){
+                ((MobEntity) entity).damage(player.getDamageSources().generic(), 4.5f);
+            }
+        }
     }
 
-    private PlayState predicate(AnimationState<ShovelFlailItem> animatedItemAnimationState) {
+    private PlayState predicate(AnimationState<StoneShovelFlailItem> animatedItemAnimationState) {
         animatedItemAnimationState.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
         return PlayState.CONTINUE;
     }
@@ -103,6 +91,4 @@ public class ShovelFlailItem extends MiningToolItem implements GeoItem{
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return cache;
     }
-
-
 }
